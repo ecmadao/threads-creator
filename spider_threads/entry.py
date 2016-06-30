@@ -9,13 +9,15 @@ from .threads.main_thread import MainThread
 
 
 class ThreadCreator(object):
+    __slots__ = ['main_thread_number', 'main_queue', 'main_spider', 'branch_spider']
+
     def __init__(self, main_spider=None, branch_spider=None, main_thread_number=5):
         self.main_thread_number = main_thread_number
         self.main_queue = queue.Queue(main_thread_number)
         self.main_spider = main_spider
         self.branch_spider = branch_spider
 
-    def get_entry_urls(self, urls):
+    def get_entry_urls(self, urls=list()):
         try:
             assert type(urls) in VALIDATE_URLS
         except AssertionError:
