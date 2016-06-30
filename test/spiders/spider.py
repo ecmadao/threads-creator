@@ -1,3 +1,6 @@
+from ..database.database import database_creator
+
+
 class MainSpider(object):
     def __init__(self, url):
         self.url = url
@@ -13,4 +16,5 @@ class BranchSpider(object):
         print('branch spider {} start!'.format(url))
 
     def request_page(self):
-        return '{}-object'.format(self.url)
+        database = database_creator()
+        database.append_date('{}-object'.format(self.url))
