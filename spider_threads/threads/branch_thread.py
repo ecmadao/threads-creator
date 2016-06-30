@@ -18,7 +18,8 @@ class BranchThread(threading.Thread):
             print('branch thread-{} start'.format(url))
             branch_spider = self.branch_spider(url)
             sleep(random.randrange(3, 10))
-            # TODO how to deal these response data?
-            result = branch_spider.request_page()
+            branch_spider.request_page()
             print('branch thread-{} end'.format(url))
             self.branch_queue.task_done()
+
+

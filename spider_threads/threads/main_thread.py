@@ -4,6 +4,8 @@ from time import sleep
 import random
 import queue
 from .branch_thread import BranchThread
+from ..utils.const_value import VALIDATE_URLS
+from ..utils.message import error_message
 
 existed_urls_list = []
 
@@ -25,10 +27,17 @@ class MainThread(threading.Thread):
             main_spider = self.main_spider(url)
             sleep(random.randrange(2, 5))
             links = main_spider.request_urls()
+
+            try:
+                assert type(links) in VALIDATE_URLS
+            except AssertionError:
+                error_message('except to return a list or tuple which contains url')
+
             branch_queue = queue.Queue(3)
 
             for i in range(2):
-                branch_thread = BranchThread(branch_queue, self.branch_spider)
+                branch_thread = BranchThread(branch_queue=branch_queue,
+                                             branch_spider=self.branch_spider)
                 branch_thread.daemon = True
                 branch_thread.start()
 
