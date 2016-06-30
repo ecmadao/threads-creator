@@ -18,7 +18,7 @@ $ pip3 install spider_threads
 
 **或者本地下载安装**
 
-```python
+```bash
 $ git clone https://github.com/ecmadao/spider-threads
 $ cd spider-threads-master
 $ python3 setup.py install 
