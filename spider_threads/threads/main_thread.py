@@ -1,4 +1,8 @@
 #!usr/env/bin python
+"""
+Main thread function here
+run main spider here
+"""
 import threading
 from time import sleep
 import random
@@ -20,6 +24,11 @@ class MainThread(threading.Thread):
         self.branch_spider = branch_spider
 
     def run(self):
+        """run your main spider here, and get a list/tuple of url as result
+        then make the instance of branch thread
+
+        :return: None
+        """
         global existed_urls_list
         while 1:
             url = self.main_queue.get()

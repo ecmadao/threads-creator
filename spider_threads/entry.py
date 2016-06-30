@@ -1,6 +1,8 @@
 #!usr/bin/env python
 """
 SPIDER THREADS
+thread creator
+here we create several main-thread
 """
 import queue
 from .utils.message import colorful_text, error_message
@@ -21,6 +23,11 @@ class ThreadCreator(object):
         self.branch_spider = branch_spider
 
     def get_entry_urls(self, urls=list()):
+        """
+
+        :param urls: url you want to fetch
+        :return: None
+        """
         try:
             assert type(urls) in VALIDATE_URLS
         except AssertionError:
@@ -35,6 +42,10 @@ class ThreadCreator(object):
             error_message('it is an empty list/tuple')
 
     def append_main_thread(self):
+        """create & start main thread
+
+        :return: None
+        """
         thread = MainThread(main_queue=self.main_queue,
                             main_spider=self.main_spider,
                             branch_spider=self.branch_spider)
