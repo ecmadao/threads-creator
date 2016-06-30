@@ -11,7 +11,7 @@ existed_urls_list = []
 class MainThread(threading.Thread):
     __slots__ = ['main_queue', 'main_spider', 'branch_spider']
 
-    def __init__(self, main_queue=None, main_spider=None, branch_spider=None):
+    def __init__(self, main_queue, main_spider, branch_spider):
         threading.Thread.__init__(self)
         self.main_queue = main_queue
         self.main_spider = main_spider
@@ -40,5 +40,3 @@ class MainThread(threading.Thread):
             branch_queue.join()
             print('main thread-{}\'s child threads is all finish'.format(url))
             self.main_queue.task_done()
-
-
