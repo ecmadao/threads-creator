@@ -72,6 +72,24 @@ message.error_message()
 message.colorful_text()
 ```
 
+[config](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/config.py)
+
+```python
+from spider_threads.config import config_creator
+
+# 生成一个配置实例
+config = config_creator()
+
+# 配置主线程数目，接受int作为参数
+config.set_main_thread_num(number)
+# 配置主线程休眠时间，接受int作为参数
+config.set_main_thread_sleep(start_time, end_time)
+# 配置子线程数目，接受int作为参数
+config.set_branch_thread_num(number)
+# 配置子线程休眠时间，接受int作为参数
+config.set_branch_thread_sleep(start_time, end_time)
+```
+
 #### example
 
 看个例子(代码中的[单元测试实例](https://github.com/ecmadao/spider-threads/tree/master/test))
