@@ -11,7 +11,7 @@ from .database.database import database_creator
 
 from spider_threads.entry import ThreadCreator
 
-URLS = [1]
+URLS = [1, 2, 3]
 
 
 def test_threads():

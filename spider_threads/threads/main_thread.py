@@ -10,6 +10,7 @@ import queue
 from .branch_thread import BranchThread
 from ..utils.const_value import VALIDATE_URLS
 from ..utils.message import error_message
+from ..config import config_creator
 
 existed_urls_list = []
 
@@ -30,11 +31,14 @@ class MainThread(threading.Thread):
         :return: None
         """
         global existed_urls_list
+        config = config_creator()
+        main_thread_sleep = config.main_thread_sleep
+        branch_thread_num = config.branch_thread_num
         while 1:
             url = self.main_queue.get()
             print('main thread-{} start'.format(url))
             main_spider = self.main_spider(url)
-            sleep(random.randrange(2, 5))
+            sleep(random.randrange(*main_thread_sleep))
             links = main_spider.request_urls()
 
             try:
@@ -43,9 +47,9 @@ class MainThread(threading.Thread):
                 error_message('except to return a list or tuple which contains url')
                 links = list()
 
-            branch_queue = queue.Queue(3)
+            branch_queue = queue.Queue(branch_thread_num)
 
-            for i in range(2):
+            for i in range(branch_thread_num):
                 branch_thread = BranchThread(branch_queue=branch_queue,
                                              branch_spider=self.branch_spider)
                 branch_thread.daemon = True

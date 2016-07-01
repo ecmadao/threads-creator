@@ -5,6 +5,7 @@ thread creator
 here we create several main-thread
 """
 import queue
+from .config import config_creator
 from .utils.message import colorful_text, error_message
 from .utils.const_value import VALIDATE_URLS
 from .threads.main_thread import MainThread
@@ -16,7 +17,9 @@ class ThreadCreator(object):
                  "main_spider",
                  "branch_spider"]
 
-    def __init__(self, main_spider=None, branch_spider=None, main_thread_number=5):
+    def __init__(self, main_spider=None, branch_spider=None):
+        config = config_creator()
+        main_thread_number = config['main_thread_num']
         self.main_thread_number = main_thread_number
         self.main_queue = queue.Queue(main_thread_number)
         self.main_spider = main_spider
