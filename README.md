@@ -81,7 +81,7 @@ class Database(object):
     def __init__(self):
         self.data = []
 
-    def append_date(self, data):
+    def append_data(self, data):
         self.data.append(data)
 ```
 
@@ -117,7 +117,7 @@ class BranchSpider(object):
     	request_page被调用与分析爬取
     	"""
 		database = database_creator()
-        database.append_date('{}-object'.format(self.url))
+        database.append_data('{}-object'.format(self.url))
 ```
 
 ```python

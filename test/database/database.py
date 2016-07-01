@@ -17,5 +17,5 @@ class Database(object):
     def __init__(self):
         self.data = []
 
-    def append_date(self, data):
+    def append_data(self, data):
         self.data.append(data)

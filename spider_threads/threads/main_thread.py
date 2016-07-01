@@ -41,6 +41,7 @@ class MainThread(threading.Thread):
                 assert type(links) in VALIDATE_URLS
             except AssertionError:
                 error_message('except to return a list or tuple which contains url')
+                links = list()
 
             branch_queue = queue.Queue(3)
 

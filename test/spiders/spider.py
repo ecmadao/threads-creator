@@ -17,4 +17,4 @@ class BranchSpider(object):
 
     def request_page(self):
         database = database_creator()
-        database.append_date('{}-object'.format(self.url))
+        database.append_data('{}-object'.format(self.url))
