@@ -40,7 +40,39 @@ $ python3 setup.py install
 - 爬虫实例化方法需要接受URL作为参数
 - A线程上运行的爬虫需要通过`request_urls`方法返回详情页URL组成的列表或元组，B线程上运行的爬虫则通过`request_page`方法对页面进行爬取分析。至于数据的储存，则由使用者自行在爬虫中编写。
 
-### Example & Usage
+### Usage & Example
+
+#### usage
+
+[ThreadCreator](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/entry.py)
+
+```python
+from spider_threads.entry import ThreadCreator
+
+# ThreadCreator用于创建初始化一个线程池，接受子线程爬虫和主线程爬虫作为命名参数
+threads = ThreadCreator(main_spider, branch_spider)
+# example
+# threads = ThreadCreator(main_spider=NpmSearchSpider, branch_spider=NpmPageSpider)
+
+# 传入列表页URL组成的list或tuple，开启爬虫
+threads.get_entry_urls(urls)
+# 结束所有的线程
+threads.finish_all_threads()
+```
+
+[message](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/utils/message.py)
+
+```python
+from spider_threads.utils import message
+
+# 接受String作为参数，打印出一段红色的error信息
+message.error_message()
+
+# 接受String, colro作为参数。具体用法见链接
+message.colorful_text()
+```
+
+#### example
 
 看个例子(代码中的[单元测试实例](https://github.com/ecmadao/spider-threads/tree/master/test))
 
@@ -146,3 +178,11 @@ def test_threads():
     if database is not None:
         print(database.data)
 ```
+
+### Project
+
+使用了该插件的Python项目：
+
+[npm-helper](https://github.com/ecmadao/npm-helper)
+
+[spider-segmentfault](https://github.com/ecmadao/Spider-Segmentfault)
