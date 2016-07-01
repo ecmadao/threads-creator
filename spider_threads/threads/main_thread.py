@@ -32,8 +32,8 @@ class MainThread(threading.Thread):
         """
         global existed_urls_list
         config = config_creator()
-        main_thread_sleep = config.main_thread_sleep
-        branch_thread_num = config.branch_thread_num
+        main_thread_sleep = config['main_thread_sleep']
+        branch_thread_num = config['branch_thread_num']
         while 1:
             url = self.main_queue.get()
             print('main thread-{} start'.format(url))

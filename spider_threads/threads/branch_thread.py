@@ -25,7 +25,7 @@ class BranchThread(threading.Thread):
         :return: None
         """
         config = config_creator()
-        branch_thread_sleep = config.branch_thread_sleep
+        branch_thread_sleep = config['branch_thread_sleep']
         while 1:
             url = self.branch_queue.get()
             print('branch thread-{} start'.format(url))

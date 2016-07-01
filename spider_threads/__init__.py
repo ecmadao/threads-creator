@@ -2,4 +2,4 @@
 SPIDER THREADS
 """
 
-__version__ = '0.02'
+__version__ = '0.035'
