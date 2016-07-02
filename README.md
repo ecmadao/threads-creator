@@ -1,6 +1,7 @@
 ## [spider-threads](https://pypi.python.org/pypi/spider_threads)
 
 [![Build Status](https://travis-ci.org/ecmadao/spider-threads.svg?branch=master)](https://travis-ci.org/ecmadao/spider-threads)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ecmadao/spider-threads/master/LICENSE)
 
 一个生成多线程的Python工具
 
