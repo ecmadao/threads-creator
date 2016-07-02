@@ -82,13 +82,15 @@ from spider_threads.config import config_creator
 config = config_creator()
 
 # 配置主线程数目，接受int作为参数
-config.set_main_thread_num(number)
+config.main_num = number
 # 配置主线程休眠时间，接受int作为参数
-config.set_main_thread_sleep(start_time, end_time)
+config.main_sleep = (start_time, end_time)
 # 配置子线程数目，接受int作为参数
-config.set_branch_thread_num(number)
+config.branch_num = number
 # 配置子线程休眠时间，接受int作为参数
-config.set_branch_thread_sleep(start_time, end_time)
+config.branch_sleep = (start_time, end_time)
+# debug模式,监听线程状态,默认为1
+config.debug = 0
 ```
 
 #### example

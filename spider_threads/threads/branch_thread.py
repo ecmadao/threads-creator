@@ -25,12 +25,15 @@ class BranchThread(threading.Thread):
         :return: None
         """
         config = config_creator()
-        branch_thread_sleep = config['branch_thread_sleep']
+        debug = config.debug
+        branch_thread_sleep = config.branch_thread_sleep
         while 1:
             url = self.branch_queue.get()
-            print('branch thread-{} start'.format(url))
+            if debug:
+                print('branch thread-{} start'.format(url))
             branch_spider = self.branch_spider(url)
             sleep(random.randrange(*branch_thread_sleep))
             branch_spider.request_page()
-            print('branch thread-{} end'.format(url))
+            if debug:
+                print('branch thread-{} end'.format(url))
             self.branch_queue.task_done()

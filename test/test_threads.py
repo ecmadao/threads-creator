@@ -10,11 +10,17 @@ from .spiders.spider import BranchSpider
 from .database.database import database_creator
 
 from spider_threads.entry import ThreadCreator
+from spider_threads.config import config_creator
 
 URLS = [1, 2, 3]
 
 
 def test_threads():
+    config = config_creator()
+    config.debug = 1
+    config.main_sleep = (0, 1)
+    config.branch_sleep = (0, 1)
+
     database = database_creator()
     thread_creator = ThreadCreator(main_spider=MainSpider, branch_spider=BranchSpider)
     thread_creator.get_entry_urls(urls=URLS)

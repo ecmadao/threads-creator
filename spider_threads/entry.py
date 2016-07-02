@@ -6,7 +6,7 @@ here we create several main-thread
 """
 import queue
 from .config import config_creator
-from .utils.message import colorful_text, error_message
+from .utils.message import error_message
 from .utils.const_value import VALIDATE_URLS
 from .threads.main_thread import MainThread
 
@@ -15,15 +15,17 @@ class ThreadCreator(object):
     __slots__ = ["main_thread_number",
                  "main_queue",
                  "main_spider",
-                 "branch_spider"]
+                 "branch_spider",
+                 "debug"]
 
     def __init__(self, main_spider=None, branch_spider=None):
         config = config_creator()
-        main_thread_number = config['main_thread_num']
+        main_thread_number = config.main_thread_num
         self.main_thread_number = main_thread_number
         self.main_queue = queue.Queue(main_thread_number)
         self.main_spider = main_spider
         self.branch_spider = branch_spider
+        self.debug = config.debug
 
     def get_entry_urls(self, urls=list()):
         """
@@ -57,5 +59,6 @@ class ThreadCreator(object):
 
     def finish_all_threads(self):
         self.main_queue.join()
-        print('all main thread is finish')
+        if self.debug:
+            print('all main thread is finish')
 

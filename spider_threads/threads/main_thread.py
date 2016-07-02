@@ -32,11 +32,13 @@ class MainThread(threading.Thread):
         """
         global existed_urls_list
         config = config_creator()
-        main_thread_sleep = config['main_thread_sleep']
-        branch_thread_num = config['branch_thread_num']
+        debug = config.debug
+        main_thread_sleep = config.main_thread_sleep
+        branch_thread_num = config.branch_thread_num
         while 1:
             url = self.main_queue.get()
-            print('main thread-{} start'.format(url))
+            if debug:
+                print('main thread-{} start'.format(url))
             main_spider = self.main_spider(url)
             sleep(random.randrange(*main_thread_sleep))
             links = main_spider.request_urls()
@@ -61,5 +63,6 @@ class MainThread(threading.Thread):
                     branch_queue.put(link)
 
             branch_queue.join()
-            print('main thread-{}\'s child threads is all finish'.format(url))
+            if debug:
+                print('main thread-{}\'s child threads is all finish'.format(url))
             self.main_queue.task_done()

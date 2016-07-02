@@ -6,52 +6,77 @@ config = None
 def config_creator():
     global config
     if config is None:
-        config = {
-            'main_thread_num': 5,
-            'main_thread_sleep': (1, 3),
-            'branch_thread_num': 3,
-            'branch_thread_sleep': (1, 3)
-        }
+        config = Config()
     return config
 
 
-def assert_agr_is_num(arg):
-    num = None
-    try:
-        assert type(arg) in (int, str)
-        num = int(arg)
-    except (AssertionError, ValueError):
-        error_message('except a number')
-    finally:
-        return num
+class Config(object):
+    def __init__(self):
+        self.main_thread_num = 5
+        self.main_thread_sleep = (1, 3)
+        self.branch_thread_num = 3
+        self.branch_thread_sleep = (1, 3)
+        self.is_debug = 0
 
+    @property
+    def main_num(self):
+        return self.main_thread_num
 
-def set_thread_num(num, config_type):
-    result = assert_agr_is_num(num)
-    if result:
-        config_dict = config_creator()
-        config_dict[config_type] = result
+    @main_num.setter
+    def main_num(self, num):
+        num = Config.assert_agr_is_num(num)
+        if num:
+            self.main_thread_num = num
 
+    @property
+    def main_sleep(self):
+        return self.main_thread_sleep
 
-def set_thread_sleep_time(start_time, end_time, config_type):
-    start_time = assert_agr_is_num(start_time)
-    end_time = assert_agr_is_num(end_time)
-    if start_time & end_time:
-        config_dict = config_creator()
-        config_dict[config_type] = (start_time, end_time)
+    @main_sleep.setter
+    def main_sleep(self, times):
+        start_time, end_time = times
+        start_time = Config.assert_agr_is_num(start_time)
+        end_time = Config.assert_agr_is_num(end_time)
+        if start_time and end_time:
+            self.main_thread_sleep = (start_time, end_time)
 
+    @property
+    def branch_num(self):
+        return self.branch_thread_num
 
-def set_main_thread_num(num):
-    set_thread_num(num, 'main_thread_num')
+    @branch_num.setter
+    def branch_num(self, num):
+        num = Config.assert_agr_is_num(num)
+        if num:
+            self.branch_thread_num = num
 
+    @property
+    def branch_sleep(self):
+        return self.branch_thread_sleep
 
-def set_main_thread_sleep(start_time=1, end_time=3):
-    set_thread_sleep_time(start_time, end_time, 'main_thread_sleep')
+    @branch_sleep.setter
+    def branch_sleep(self, times):
+        start_time, end_time = times
+        start_time = Config.assert_agr_is_num(start_time)
+        end_time = Config.assert_agr_is_num(end_time)
+        if start_time and end_time:
+            self.branch_thread_sleep = (start_time, end_time)
 
+    @property
+    def debug(self):
+        return self.is_debug
 
-def set_branch_thread_num(num):
-    set_thread_num(num, 'branch_thread_num')
+    @debug.setter
+    def debug(self, is_debug):
+        self.is_debug = is_debug
 
-
-def set_branch_thread_sleep(start_time=1, end_time=3):
-    set_thread_sleep_time(start_time, end_time, 'branch_thread_sleep')
+    @staticmethod
+    def assert_agr_is_num(arg):
+        num = None
+        try:
+            assert type(arg) in (int, str)
+            num = int(arg)
+        except (AssertionError, ValueError):
+            error_message('except a number')
+        finally:
+            return num
