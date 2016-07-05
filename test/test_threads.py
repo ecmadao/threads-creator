@@ -24,6 +24,7 @@ def test_threads():
     thread_creator.get_entry_urls(urls=URLS)
     thread_creator.finish_all_threads()
 
+    assert database is not None
+    assert len(database.data) > 1
+
     print('all thread finished')
-    if database is not None:
-        print(database.data)
