@@ -5,12 +5,10 @@ create a global Database
 then push spiders to ThreadCreator, BOOM!
 """
 
-from .spiders.spider import MainSpider
-from .spiders.spider import BranchSpider
-from .database.database import database_creator
+from .spiders import MainSpider, BranchSpider
+from .database import database_creator
 
-from spider_threads.entry import ThreadCreator
-from spider_threads.config import config_creator
+from threads_creator import ThreadCreator, config_creator
 
 URLS = [1, 2, 3]
 

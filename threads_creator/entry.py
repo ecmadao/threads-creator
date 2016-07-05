@@ -6,9 +6,11 @@ here we create several main-thread
 """
 import queue
 from .config import config_creator
-from .utils.message import error_message
-from .utils.const_value import VALIDATE_URLS
-from .threads.main_thread import MainThread
+from .utils import error_message, VALIDATE_URLS
+# from .utils.message import error_message
+# from .utils.const_value import VALIDATE_URLS
+# from .threads.main_thread import MainThread
+from .threads import MainThread
 
 
 class ThreadCreator(object):

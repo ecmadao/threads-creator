@@ -1,4 +1,4 @@
-from ..database.database import database_creator
+from ..database import database_creator
 
 
 class MainSpider(object):

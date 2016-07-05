@@ -1,14 +1,13 @@
 from setuptools import setup, find_packages
-from spider_threads import __version__
 
 setup(
-    name='spider_threads',
-    version=__version__,
+    name='threads_creator',
+    version='1.5',
     keywords=('spider', 'thread'),
     description='A tool to help you build multiply spider',
     author='ecmadao',
     author_email='wlec@outlook.com',
-    url='https://github.com/ecmadao/spider-threads',
+    url='https://github.com/ecmadao/threads-creator',
     packages=find_packages(),
     py_modules=['run'],
     include_package_data=True,

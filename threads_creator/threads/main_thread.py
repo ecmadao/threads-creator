@@ -7,9 +7,9 @@ import threading
 from time import sleep
 import random
 import queue
-from .branch_thread import BranchThread
-from ..utils.const_value import VALIDATE_URLS
-from ..utils.message import error_message
+from . import BranchThread
+from ..utils import VALIDATE_URLS
+from ..utils import error_message
 from ..config import config_creator
 
 existed_urls_list = []
