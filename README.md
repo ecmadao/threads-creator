@@ -1,6 +1,6 @@
-## [spider-threads](https://pypi.python.org/pypi/spider_threads)
+## [threads-creator](https://pypi.python.org/pypi/threads_creator)
 
-[![Build Status](https://travis-ci.org/ecmadao/spider-threads.svg?branch=master)](https://travis-ci.org/ecmadao/spider-threads)
+[![Build Status](https://travis-ci.org/ecmadao/threads-creator.svg?branch=master)](https://travis-ci.org/ecmadao/threads-creator)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ecmadao/spider-threads/master/LICENSE)
 
 一个生成多线程的Python工具
@@ -14,14 +14,14 @@ python3.5 +
 **通过pip安装**
 
 ```bash
-$ pip3 install spider_threads
+$ pip3 install threads_creator
 ```
 
 **或者本地下载安装**
 
 ```bash
-$ git clone https://github.com/ecmadao/spider-threads
-$ cd spider-threads-master
+$ git clone https://github.com/ecmadao/threads-creator
+$ cd threads-creator-master
 $ python3 setup.py install 
 ```
 
@@ -45,10 +45,10 @@ $ python3 setup.py install
 
 #### usage
 
-[ThreadCreator](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/entry.py)
+[ThreadCreator](https://github.com/ecmadao/threads-creator/blob/master/spider_threads/entry.py)
 
 ```python
-from spider_threads.entry import ThreadCreator
+from threads_creator.entry import ThreadCreator
 
 # ThreadCreator用于创建初始化一个线程池，接受子线程爬虫和主线程爬虫作为命名参数
 threads = ThreadCreator(main_spider, branch_spider)
@@ -61,10 +61,10 @@ threads.get_entry_urls(urls)
 threads.finish_all_threads()
 ```
 
-[message](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/utils/message.py)
+[message](https://github.com/ecmadao/threads-creator/blob/master/spider_threads/utils/message.py)
 
 ```python
-from spider_threads.utils import message
+from threads_creator.utils import message
 
 # 接受String作为参数，打印出一段红色的error信息
 message.error_message()
@@ -73,10 +73,10 @@ message.error_message()
 message.colorful_text()
 ```
 
-[config](https://github.com/ecmadao/spider-threads/blob/master/spider_threads/config.py)
+[config](https://github.com/ecmadao/threads_creator/blob/master/spider_threads/config.py)
 
 ```python
-from spider_threads.config import config_creator
+from threads_creator.config import config_creator
 
 # 生成一个配置实例
 config = config_creator()
@@ -95,7 +95,7 @@ config.debug = 0
 
 #### example
 
-看个例子(代码中的[单元测试实例](https://github.com/ecmadao/spider-threads/tree/master/test))
+看个例子(代码中的[单元测试实例](https://github.com/ecmadao/threads_creator/tree/master/test))
 
 ```bash
 # 创建如下目录
@@ -180,7 +180,7 @@ from .spiders.spider import BranchSpider
 from .database.database import database_creator
 
 # 引用我们的ThreadCreator创建线程
-from spider_threads.entry import ThreadCreator
+from threads_creator.entry import ThreadCreator
 
 URLS = [1, 2] # 模拟page URL
 
@@ -195,9 +195,9 @@ def test_threads():
     thread_creator.get_entry_urls(urls=URLS)
     thread_creator.finish_all_threads()
 
+	assert database is not None
+	assert len(database.data) > 1
     print('all thread finished')
-    if database is not None:
-        print(database.data)
 ```
 
 ### Project
